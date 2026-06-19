@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sawit Store - Furry Theme Shop</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dark-theme">
+
+    <div class="loading-screen" id="loadingScreen">
+        <div class="cube-wrapper">
+            <div class="cube">
+                <div class="face front"></div>
+                <div class="face back"></div>
+                <div class="face right"></div>
+                <div class="face left"></div>
+                <div class="face top"></div>
+                <div class="face bottom"></div>
+            </div>
+            <h1>Sawit Store</h1>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-area">
+                <img src="furry.png" alt="Sawit Store Logo" id="siteLogo" class="nav-logo" oncontextmenu="return false;" draggable="false">
+                <span class="brand-name">Sawit<span>Store</span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#produk">Produk</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <button id="themeToggle" class="theme-btn">
+                <i class="fas fa-sun"></i>
+            </button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Welcome to the Ultimate <span class="highlight">Furry Haven</span></h1>
+            <p>Penyedia Panel Pterodactyl berkinerja tinggi dan Script Bot WhatsApp terbaik untuk kebutuhan komunitasmu!</p>
+            <a href="#produk" class="btn-primary">Lihat Katalog</a>
+        </div>
+    </header>
+
+    <main class="container" id="produk">
+        <h2 class="section-title">Layanan & Produk Kami</h2>
+        
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="card-icon"><i class="fas fa-server"></i></div>
+                <h3>Panel Pterodactyl</h3>
+                <p>Hosting game dan bot dengan performa maksimal, uptime 99.9%, dan perlindungan DDoS yang solid. Cocok untuk mengelola server tanpa ribet.</p>
+                <div class="price">Rp 15.000 / bln</div>
+                <button class="btn-buy">Beli Sekarang</button>
+            </div>
+
+            <div class="product-card">
+                <div class="card-icon"><i class="fab fa-whatsapp"></i></div>
+                <h3>Script Bot WhatsApp</h3>
+                <p>Script bot WA berbasis Node.js yang responsif, kaya fitur (fitur download, AI, group management), dan mudah untuk di-deploy.</p>
+                <div class="price">Rp 35.000 / lifetime</div>
+                <button class="btn-buy">Beli Sekarang</button>
+            </div>
+        </div>
+    </main>
+
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <h2 class="section-title">FAQ ❓</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Apa itu Panel Pterodactyl?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Panel Pterodactyl adalah panel manajemen server open-source yang digunakan untuk menjalankan game server atau bot (seperti bot Discord/WA) di dalam Linux container yang terisolasi dengan aman dan mudah.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Bagaimana cara pemasangan Script Bot WA?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Kamu hanya perlu melakukan instalasi Node.js, melakukan clone atau upload script ke panel/vps, lalu jalankan perintah `npm start` dan scan QR code menggunakan WhatsApp kamu.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Apakah ada garansi jika error?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Tentu saja! Kami menyediakan support penuh melalui CS WhatsApp kami jika kamu menemukan kendala teknis atau bug pada produk yang dibeli.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Sawit Store. All Rights Reserved. Styled with Furry Pride 🐾</p>
+    </footer>
+
+    <a href="https://wa.me/6285122090376" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Hubungi CS Kami">
+        <i class="fab fa-whatsapp"></i>
+        <span class="tooltip-text">Hubungi CS</span>
+    </a>
+
+    <script src="script/script.js"></script>
+</body>
+</html>
+
