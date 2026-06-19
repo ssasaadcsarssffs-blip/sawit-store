@@ -1,59 +1,78 @@
-// 1. Efek Animasi Loading Screen Kubus
+// 1. Loading Screen Animasi Kubus
 window.addEventListener('load', () => {
     const loadingScreen = document.getElementById('loadingScreen');
-    setTimeout(() => {
-        loadingScreen.style.opacity = '0';
-        loadingScreen.style.visibility = 'hidden';
-    }, 1500); // Tampil selama 1.5 detik
-});
-
-// 2. Fitur Dark / Light Mode Toggle
-const themeToggle = document.getElementById('themeToggle');
-const body = document.body;
-const icon = themeToggle.querySelector('i');
-
-themeToggle.addEventListener('click', () => {
-    if (body.classList.contains('dark-theme')) {
-        body.classList.remove('dark-theme');
-        body.classList.add('light-theme');
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
-    } else {
-        body.classList.remove('light-theme');
-        body.classList.add('dark-theme');
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
+    if (loadingScreen) {
+        setTimeout(() => {
+            loadingScreen.style.opacity = '0';
+            loadingScreen.style.visibility = 'hidden';
+        }, 1200); // Layar loading menutup mulus setelah 1.2 detik
     }
 });
 
-// 3. Interaktivitas FAQ Accordion
+// 2. Kontrol Navigasi Geser Slider Jualan (Tombol Kanan-Kiri)
+const slider = document.getElementById('productSlider');
+const nextBtn = document.getElementById('slideNext');
+const prevBtn = document.getElementById('slidePrev');
+
+if (slider && nextBtn && prevBtn) {
+    nextBtn.addEventListener('click', () => {
+        // Menggeser ke kanan sebesar lebar elemen item produk
+        slider.scrollLeft += slider.offsetWidth * 0.85;
+    });
+    prevBtn.addEventListener('click', () => {
+        // Menggeser ke kiri sebesar lebar elemen item produk
+        slider.scrollLeft -= slider.offsetWidth * 0.85;
+    });
+}
+
+// 3. Sistem Pengubah Tema (Dark / Light Mode)
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+
+if (themeToggle) {
+    const themeIcon = themeToggle.querySelector('i');
+    
+    themeToggle.addEventListener('click', () => {
+        if (body.classList.contains('dark-theme')) {
+            body.classList.replace('dark-theme', 'light-theme');
+            themeIcon.className = 'fas fa-moon'; // Berubah jadi ikon bulan saat mode terang aktif
+        } else {
+            body.classList.replace('light-theme', 'dark-theme');
+            themeIcon.className = 'fas fa-sun'; // Berubah jadi ikon matahari saat mode gelap aktif
+        }
+    });
+}
+
+// 4. Interaktivitas Akordion FAQ
 const faqItems = document.querySelectorAll('.faq-item');
 
 faqItems.forEach(item => {
     const question = item.querySelector('.faq-question');
-    question.addEventListener('click', () => {
-        // Menutup item FAQ lain yang sedang terbuka (opsional)
-        faqItems.forEach(otherItem => {
-            if (otherItem !== item) {
-                otherItem.classList.remove('active');
-            }
+    if (question) {
+        question.addEventListener('click', () => {
+            // Tutup FAQ lain yang sedang terbuka agar rapi (opsional)
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            // Aktifkan / nonaktifkan FAQ yang dipilih
+            item.classList.toggle('active');
         });
-        // Toggle item yang diklik
-        item.classList.toggle('active');
-    });
-});
-
-// 4. Proteksi Ekstra Pencegahan Download Logo
-const logo = document.getElementById('siteLogo');
-
-// Mencegah Klik Kanan khusus pada area elemen Logo
-logo.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-});
-
-// Mencegah aksi pintasan keyboard (seperti Inspect Element / Save As) ketika kursor diarahkan ke logo
-logo.addEventListener('keydown', (e) => {
-    if (e.ctrlKey && (e.key === 's' || e.key === 'u')) {
-        e.preventDefault();
     }
 });
+
+// 5. Proteksi Tingkat Tinggi Logo furry.png dari Download
+const logo = document.getElementById('siteLogo');
+
+if (logo) {
+    // Mematikan menu klik kanan khusus pada elemen logo (mencegah "Save Image As")
+    logo.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+    });
+    
+    // Mencegah gambar diseret / di-drag oleh user ke tab baru atau ke desktop
+    logo.addEventListener('dragstart', (e) => {
+        e.preventDefault();
+    });
+}
