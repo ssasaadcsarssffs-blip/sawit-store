@@ -1,428 +1,242 @@
-/* --- Google Fonts & Reset --- */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+/* --- Google Fonts & Core Reset --- */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
 }
 
 html {
     scroll-behavior: smooth;
 }
 
-/* --- Variabel Warna (Tema Furry Neon Bersemangat) --- */
+/* --- Variabel Tema (Bio-Link Minimalis Premium) --- */
 .dark-theme {
-    --bg-color: #1a1a24;
-    --card-bg: #242433;
-    --text-color: #f5f5f5;
-    --text-muted: #b0b0c0;
-    --primary-color: #ff6b81; /* Pink Furry Neon */
-    --secondary-color: #4bcffa; /* Cyan */
-    --nav-bg: rgba(26, 26, 36, 0.95);
-    --shadow: rgba(0, 0, 0, 0.4);
+    --bg-color: #0d0d11;
+    --bg-pattern: rgba(255, 255, 255, 0.015);
+    --card-bg: #14141c;
+    --card-border: rgba(255, 255, 255, 0.06);
+    --text-color: #f3f4f6;
+    --text-muted: #8e929b;
+    --primary: #ff4757; /* Pink Furry Glow */
+    --secondary: #00d2d3;
+    --accent-glow: rgba(255, 71, 87, 0.15);
 }
 
 .light-theme {
-    --bg-color: #f7f9fc;
+    --bg-color: #f1f3f7;
+    --bg-pattern: rgba(0, 0, 0, 0.015);
     --card-bg: #ffffff;
-    --text-color: #2c3e50;
-    --text-muted: #7f8c8d;
-    --primary-color: #ff4757;
-    --secondary-color: #00a8ff;
-    --nav-bg: rgba(255, 255, 255, 0.95);
-    --shadow: rgba(0, 0, 0, 0.1);
+    --card-border: rgba(0, 0, 0, 0.07);
+    --text-color: #0f172a;
+    --text-muted: #64748b;
+    --primary: #ff4757;
+    --secondary: #00a8ff;
+    --accent-glow: rgba(255, 71, 87, 0.05);
 }
 
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    overflow-x: hidden;
-}
-
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 60px 0;
-}
-
-/* --- Animasi Loading Kubus --- */
-.loading-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #111116;
     display: flex;
     justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    opacity: 1;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px 120px 20px;
+    background-image: repeating-linear-gradient(45deg, var(--bg-pattern) 0px, var(--bg-pattern) 2px, transparent 2px, transparent 10px);
 }
 
-.cube-wrapper {
-    text-align: center;
+/* --- 🧊 Loading Screen Kubus Realistis Glow --- */
+.loading-screen {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: #09090d;
+    display: flex; justify-content: center; align-items: center;
+    z-index: 9999; opacity: 1;
+    transition: opacity 0.5s ease, visibility 0.5s;
 }
 
+.cube-wrapper { text-align: center; }
 .cube-wrapper h1 {
-    color: #ff6b81;
-    margin-top: 40px;
-    font-size: 1.8rem;
-    letter-spacing: 2px;
-    animation: pulse 1.5s infinite alternate;
+    color: #fff; font-weight: 800; margin-top: 35px; font-size: 1.6rem;
+    letter-spacing: 3px; text-shadow: 0 0 15px var(--primary);
 }
 
 .cube {
-    width: 60px;
-    height: 60px;
-    margin: 0 auto;
-    transform-style: preserve-3d;
-    animation: rotateCube 3s infinite linear;
+    width: 55px; height: 55px; margin: 0 auto;
+    transform-style: preserve-3d; animation: putarKubus 3s infinite ease-in-out;
 }
 
 .face {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    background: rgba(255, 107, 129, 0.2);
-    border: 2px solid #ff6b81;
-    box-shadow: 0 0 15px rgba(255, 107, 129, 0.5);
+    position: absolute; width: 55px; height: 55px;
+    background: rgba(255, 71, 87, 0.1); border: 2px solid var(--primary);
+    box-shadow: 0 0 20px var(--accent-glow); border-radius: 8px;
 }
 
-.front  { transform: translateZ(30px); }
-.back   { transform: rotateY(180deg) translateZ(30px); }
-.right  { transform: rotateY(90deg) translateZ(30px); }
-.left   { transform: rotateY(-90deg) translateZ(30px); }
-.top    { transform: rotateX(90deg) translateZ(30px); }
-.bottom { transform: rotateX(-90deg) translateZ(30px); }
+.front  { transform: translateZ(27.5px); }
+.back   { transform: rotateY(180deg) translateZ(27.5px); }
+.right  { transform: rotateY(90deg) translateZ(27.5px); }
+.left   { transform: rotateY(-90deg) translateZ(27.5px); }
+.top    { transform: rotateX(90deg) translateZ(27.5px); }
+.bottom { transform: rotateX(-90deg) translateZ(27.5px); }
 
-@keyframes rotateCube {
+@keyframes putarKubus {
     0% { transform: rotateX(0deg) rotateY(0deg); }
+    50% { transform: rotateX(180deg) rotateY(180deg); }
     100% { transform: rotateX(360deg) rotateY(360deg); }
 }
 
-@keyframes pulse {
-    0% { transform: scale(0.95); opacity: 0.7; }
-    100% { transform: scale(1.05); opacity: 1; }
-}
-
-/* --- Navbar --- */
-.navbar {
-    position: fixed;
-    top: 0;
+/* --- 📱 Container Utama Ala Bento/Bio-Link --- */
+.bio-wrapper {
     width: 100%;
-    background-color: var(--nav-bg);
-    box-shadow: 0 4px 20px var(--shadow);
-    z-index: 100;
-    backdrop-filter: blur(10px);
-}
-
-.nav-container {
+    max-width: 520px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 15px 0;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.logo-area {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.nav-logo {
-    height: 45px;
-    width: 45px;
-    object-fit: cover;
-    border-radius: 50%;
-    pointer-events: none; /* Cegah drag gambar */
-    user-select: none;    /* Menghindari seleksi gambar */
-    border: 2px solid var(--primary-color);
-}
-
-.brand-name {
-    font-weight: 800;
-    font-size: 1.4rem;
-    color: var(--text-color);
-}
-
-.brand-name span {
-    color: var(--primary-color);
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 30px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: var(--text-color);
-    font-weight: 600;
-}
-
-.nav-links a:hover {
-    color: var(--primary-color);
-}
-
-.theme-btn {
-    background: none;
-    border: 2px solid var(--primary-color);
-    color: var(--primary-color);
-    padding: 8px 12px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 1rem;
-}
-
-.theme-btn:hover {
-    background-color: var(--primary-color);
-    color: #fff;
-}
-
-/* --- Hero Section --- */
-.hero {
-    height: 70vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0 20px;
-    background: radial-gradient(circle at top right, rgba(75, 207, 250, 0.1), transparent),
-                radial-gradient(circle at bottom left, rgba(255, 107, 129, 0.1), transparent);
-    margin-top: 70px;
-}
-
-.hero-content h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin-bottom: 20px;
-}
-
-.hero-content .highlight {
-    color: var(--primary-color);
-    text-shadow: 0 0 10px rgba(255, 107, 129, 0.3);
-}
-
-.hero-content p {
-    color: var(--text-muted);
-    font-size: 1.2rem;
-    max-width: 600px;
-    margin: 0 auto 30px;
-}
-
-.btn-primary {
-    display: inline-block;
-    padding: 12px 30px;
-    background-color: var(--primary-color);
-    color: #fff;
-    text-decoration: none;
-    border-radius: 30px;
-    font-weight: 600;
-    box-shadow: 0 4px 15px rgba(255, 107, 129, 0.4);
-}
-
-.btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(255, 107, 129, 0.6);
-}
-
-/* --- Produk Layout --- */
-.section-title {
-    text-align: center;
-    font-size: 2.2rem;
-    margin-bottom: 50px;
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 28px;
+    padding: 24px;
+    overflow: hidden;
     position: relative;
 }
 
-.section-title::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 4px;
-    background-color: var(--primary-color);
-    margin: 10px auto 0;
-    border-radius: 2px;
-}
-
-.products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
-.product-card {
-    background-color: var(--card-bg);
-    border-radius: 20px;
-    padding: 40px 30px;
+/* --- Profile Card --- */
+.profile-card {
     text-align: center;
-    box-shadow: 0 10px 30px var(--shadow);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 35px 24px;
 }
 
-.product-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--primary-color);
+.banner-area {
+    width: 100%; height: 120px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    position: absolute; top: 0; left: 0; opacity: 0.8;
 }
 
-.card-icon {
-    font-size: 3.5rem;
-    color: var(--secondary-color);
-    margin-bottom: 20px;
+.profile-avatar-wrapper {
+    position: relative; margin-top: 35px; display: inline-block;
 }
 
-.product-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
+.nav-logo {
+    width: 95px; height: 95px; object-fit: cover;
+    border-radius: 50%; border: 4px solid var(--card-bg);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    pointer-events: none; user-select: none;
 }
 
-.product-card p {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 25px;
+.verified-badge {
+    position: absolute; bottom: 5px; right: 5px;
+    background-color: #2f80ed; color: #fff;
+    width: 22px; height: 22px; border-radius: 50%;
+    display: flex; justify-content: center; align-items: center; font-size: 11px;
+    border: 2px solid var(--card-bg);
 }
 
-.price {
-    font-size: 1.3rem;
-    font-weight: 800;
-    color: var(--primary-color);
-    margin-bottom: 20px;
+.profile-card h1 { font-size: 1.6rem; font-weight: 800; margin-top: 15px; }
+.profile-card .username { color: var(--primary); font-size: 0.9rem; font-weight: 600; }
+
+.bio-text {
+    background: rgba(0,0,0,0.05); border-left: 3px solid var(--primary);
+    padding: 12px; border-radius: 12px; margin-top: 20px;
+    font-size: 0.9rem; text-align: left; color: var(--text-muted); line-height: 1.5;
 }
+.dark-theme .bio-text { background: rgba(255,255,255,0.02); }
+
+/* --- Slider Produk / Layanan --- */
+.gallery-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;
+}
+.gallery-header h2 { font-size: 1.2rem; font-weight: 700; }
+.slider-nav { display: flex; gap: 8px; }
+.slider-nav button {
+    background: transparent; border: 1px solid var(--card-border); color: var(--text-color);
+    width: 35px; height: 35px; border-radius: 50%; cursor: pointer;
+}
+.slider-nav button:hover { border-color: var(--primary); color: var(--primary); }
+
+.slider-container {
+    overflow-x: auto; display: flex; gap: 15px;
+    scroll-behavior: smooth; scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-bottom: 5px;
+}
+.slider-container::-webkit-scrollbar { display: none; }
+
+.product-item {
+    min-width: 85%; scroll-snap-align: start;
+    background: rgba(0,0,0,0.02); border: 1px solid var(--card-border);
+    border-radius: 20px; padding: 24px 20px 20px 20px; display: flex; flex-direction: column; gap: 12px;
+    position: relative;
+}
+.dark-theme .product-item { background: rgba(255,255,255,0.01); }
+
+.badge-tag {
+    position: absolute; top: 12px; right: 15px;
+    font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+    background: rgba(255, 71, 87, 0.1); color: var(--primary);
+    padding: 3px 8px; border-radius: 8px; border: 1px solid rgba(255, 71, 87, 0.2);
+}
+
+.product-item i { font-size: 2rem; color: var(--secondary); margin-top: 10px; width: fit-content;}
+.product-item h3 { font-size: 1.1rem; font-weight: 700; }
+.product-item p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 10px; }
 
 .btn-buy {
-    width: 100%;
-    padding: 10px 0;
-    background: none;
-    border: 2px solid var(--secondary-color);
-    color: var(--secondary-color);
-    border-radius: 25px;
-    font-weight: 600;
-    cursor: pointer;
+    width: 100%; padding: 12px; background: transparent; border: 1px solid var(--primary);
+    color: var(--primary); border-radius: 14px; font-weight: 700; cursor: pointer;
+    text-align: center; text-decoration: none; font-size: 0.9rem;
+    display: block; box-sizing: border-box;
 }
+.btn-buy:hover { background: var(--primary); color: #fff; box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3); }
 
-.btn-buy:hover {
-    background-color: var(--secondary-color);
-    color: #fff;
-}
-
-/* --- FAQ Accordion --- */
-.faq-section {
-    background-color: var(--card-bg);
-}
-
-.faq-container {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.faq-item {
-    border-bottom: 1px solid var(--text-muted);
-    padding: 20px 0;
-}
-
-.faq-question {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-}
-
-.faq-question h3 {
-    font-size: 1.15rem;
-    font-weight: 600;
-}
-
-.faq-question i {
-    transition: transform 0.3s ease;
-}
-
+/* --- FAQ Accordion Section --- */
+.faq-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;}
+.faq-box { display: flex; flex-direction: column; gap: 10px; }
+.faq-item { border: 1px solid var(--card-border); border-radius: 16px; padding: 15px; }
+.faq-question { display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+.faq-question h4 { font-size: 0.95rem; font-weight: 600; }
 .faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out, padding 0.3s ease;
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    line-height: 1.6;
+    max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding-top 0.3s;
+    font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;
+}
+.faq-item.active .faq-answer { max-height: 120px; padding-top: 10px; }
+.faq-item.active { border-color: var(--primary); }
+.faq-item.active .faq-question i { transform: rotate(180deg); color: var(--primary); }
+
+/* --- Quote Dev --- */
+.quote-card { font-style: italic; color: var(--text-muted); font-size: 0.85rem; text-align: center; }
+
+/* --- Menu Tombol Kontrol Kanan Bawah --- */
+.fixed-controls {
+    position: fixed; bottom: 30px; right: 30px;
+    display: flex; flex-direction: column; gap: 12px; z-index: 100;
 }
 
-.faq-item.active .faq-answer {
-    max-height: 200px;
-    padding-top: 15px;
+.control-btn {
+    width: 50px; height: 50px; border-radius: 50%;
+    background-color: var(--card-bg); border: 1px solid var(--card-border);
+    color: var(--text-color); display: flex; justify-content: center; align-items: center;
+    font-size: 18px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-decoration: none; position: relative;
 }
+.control-btn:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-2px); }
 
-.faq-item.active .faq-question i {
-    transform: rotate(180deg);
-    color: var(--primary-color);
-}
-
-/* --- Footer --- */
-footer {
-    text-align: center;
-    padding: 30px;
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    border-top: 1px solid rgba(0,0,0,0.1);
-}
-
-/* --- WhatsApp Float Button --- */
-.whatsapp-float {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background-color: #25d366;
-    color: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    z-index: 99;
-    text-decoration: none;
-}
-
-.whatsapp-float:hover {
-    transform: scale(1.1);
-    background-color: #20ba5a;
-}
+.control-btn.whatsapp-btn { background-color: #25d366; color: white; border: none; font-size: 22px; }
+.control-btn.whatsapp-btn:hover { background-color: #20ba5a; color: white; }
 
 .tooltip-text {
-    visibility: hidden;
-    width: 100px;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-    right: 125%;
-    font-size: 0.75rem;
-    opacity: 0;
-    transition: opacity 0.3s;
+    visibility: hidden; background-color: #111; color: #fff; font-size: 0.75rem;
+    padding: 4px 10px; border-radius: 6px; position: absolute; right: 125%; white-space: nowrap; opacity: 0; transition: 0.2s;
 }
+.control-btn:hover .tooltip-text { visibility: visible; opacity: 1; }
 
-.whatsapp-float:hover .tooltip-text {
-    visibility: visible;
-    opacity: 1;
-}
-
-/* --- Responsif Konten --- */
 @media(max-width: 768px) {
-    .nav-links { display: none; }
-    .hero-content h1 { font-size: 2.2rem; }
-    .whatsapp-float { bottom: 20px; right: 20px; width: 50px; height: 50px; font-size: 25px; }
+    .fixed-controls { bottom: 20px; right: 20px; }
 }
 
