@@ -139,7 +139,30 @@ body {
 }
 
 .profile-card h1 { font-size: 1.6rem; font-weight: 800; margin-top: 15px; }
-.profile-card .username { color: var(--primary); font-size: 0.9rem; font-weight: 600; }
+
+/* Struktur Username + Centang Biru */
+.username {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: var(--primary); 
+    font-size: 0.9rem; 
+    font-weight: 600;
+}
+
+.name-verified {
+    color: #2f80ed; 
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    animation: pulseGlow 2s infinite alternate;
+}
+
+@keyframes pulseGlow {
+    0% { filter: drop-shadow(0 0 2px rgba(47, 128, 237, 0.4)); }
+    100% { filter: drop-shadow(0 0 6px rgba(47, 128, 237, 0.8)); }
+}
 
 .bio-text {
     background: rgba(0,0,0,0.05); border-left: 3px solid var(--primary);
